@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  db:
+    image: mariadb
+    user: root
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      TZ: "Asia/Taipei"
+
+    volumes:
+      - ./mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ./dataBase/:/var/lib/mysql/:rw
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8888:8080
